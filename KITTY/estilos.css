@@ -1,0 +1,244 @@
+@charset "UTF-8";
+body{
+    margin: 0%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    /*background-color: #FFC0CB; */
+    background-image: url(img/fondo.png);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carta{
+    text-align: center;
+    width: 100%;
+}
+
+.carta h1{
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 45px;
+    color: #333;
+}
+
+.abrirCarta img{ /* .carta img */
+    width: 300px;
+    max-width: 90vw;    
+    height: auto;
+    border-radius: 10px;
+    margin-top: -15px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(1px 2px 15px rgba(0, 0, 0, 0.97));
+
+}
+
+.hoja-carta {
+    box-sizing: border-box;
+
+    width: 95vw;
+    max-width: 700px;
+    min-height: 75vh;
+    height: auto;
+    margin: 20px auto;
+    padding: 45px 40px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 31px,
+            #e8dce2 32px
+        ),
+        #fffdf5;
+
+    clip-path: polygon(
+        0% 1%, 8% 0%, 16% 1%,
+        24% 0%, 32% 1%, 40% 0%,
+        48% 1%, 56% 0%, 64% 1%,
+        72% 0%, 80% 1%, 88% 0%,
+        96% 1%, 100% 0%,
+        99% 25%, 100% 50%,
+        99% 75%, 100% 100%,
+        90% 99%, 80% 100%,
+        70% 99%, 60% 100%,
+        50% 99%, 40% 100%,
+        30% 99%, 20% 100%,
+        10% 99%, 0% 100%
+    );
+}
+
+/*.mensaje img{
+    width: 230px;
+    max-width: 90vw;    
+    height: auto;
+    border-radius: 10px;
+    margin-top: 25px;
+    border-radius: 10px;
+    border: 2px black solid;
+    transition: transform 0.3s ease;
+    transition: opacity 0.3 ease, transform 0.3s ease;
+}*/
+
+.mensaje img {
+    width: 250px;
+    height: 300px;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    border: 2px solid black;
+    margin-top: 25px;
+    opacity: 1;
+    transition:
+        opacity 0.4s ease,
+        transform 0.3s ease;
+}
+
+.mensaje img.desvanecer {
+    opacity: 0;
+}
+
+.abrirCarta img:hover{
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.mensaje img:hover{
+    transform: scale(1.05);
+}
+
+#imgbbita {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition:
+        opacity 2s ease,
+        transform 2s ease,
+        visibility 2s;
+}
+
+#imgbbita.mostrar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#abrirCarta{
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+#abrirCarta.abierta {
+    transform: translateY(-60px);
+    opacity: 0;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.mensaje {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    color: #000000;
+
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.mensaje.visible {
+    display: block;
+}
+
+.mensaje.aparecer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#titulo {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#titulo.oculto {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+.emoji-flotante {
+    position: fixed;
+    left: 0;
+    top: 0;
+    font-size: 35px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    animation: explosion 1s ease-out forwards;
+}
+
+@keyframes explosion {
+    0% {
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            rotate(var(--rotacion))
+            scale(0.5);
+
+        opacity: 0;
+    }
+}
+
+#textoCarta {
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    line-height: 1.2;
+    color: #654052;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.firma {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.firma.mostrar {
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .hoja-carta {
+        padding: 35px 22px;
+        min-height: 70vh;
+    }
+
+    #textoCarta {
+        font-size: 24px;
+    }
+
+    .mensaje img {
+        width: 220px;
+    }
+}
